@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: carlorandonepipelinesjavascriptdocker 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: carlorandonepipelinesjavascriptdocker
+  template:
+    metadata:
+      labels:
+        app: carlorandonepipelinesjavascriptdocker 
+    spec:
+      containers:
+        - name: carlorandonepipelinesjavascriptdocker 
+          image: mycontainerregistry012345.azurecr.io/carlorandonepipelinesjavascriptdocker
+          ports:
+          - containerPort: 8080
