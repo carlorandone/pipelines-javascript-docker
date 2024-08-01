@@ -30,9 +30,9 @@ stages:
   jobs:
   - job: Build
     displayName: Build
-    pool: LocalPool1
-    #pool:
-    #  vmImage: $(vmImageName)
+    #pool: LocalPool1
+    pool:
+      vmImage: $(vmImageName)
     steps:
     - task: Docker@2
       displayName: Build and push an image to container registry
@@ -55,9 +55,9 @@ stages:
   - deployment: Deploy
     condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/pull/')))
     displayName: Deploy
-    pool: LocalPool1
-    #pool:
-    #  vmImage: $(vmImageName)
+    #pool: LocalPool1
+    pool:
+      vmImage: $(vmImageName)
     environment: 'carlorandonepipelinesjavascriptdocker.default'
     strategy:
       runOnce:
@@ -85,9 +85,9 @@ stages:
   - deployment: DeployPullRequest
     displayName: Deploy Pull request
     condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/pull/'))
-    pool: LocalPool1
-    #pool:
-    #  vmImage: $(vmImageName)
+    #pool: LocalPool1
+    pool:
+      vmImage: $(vmImageName)
 
     environment: 'carlorandonepipelinesjavascriptdocker.$(k8sNamespaceForPR)'
     strategy:
